@@ -1,0 +1,29 @@
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+}
+
+.items{
+    font-size: large;
+    margin-right: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.listContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+.alertText{
+    color: tomato;
+    text-align: center;
+}
+
+.allLists{
+    overflow: auto;
+}

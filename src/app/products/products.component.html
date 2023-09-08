@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let item of storeData">
+      <a
+        class="text-decoration-none text-dark"
+        [routerLink]="['/products', item?.id]"
+      >
+        <div>
+          <img
+            src="{{ item?.image }}"
+            class="h-25 w-25 border-3"
+            alt="{{ item.id }}"
+          />
+        </div>
+        <h4>{{ item?.title }}</h4>
+        <p>{{ item?.description }}</p>
+        <h6>Rs. {{ item?.price }}/-</h6>
+        <p>rating: {{ item?.rating?.rate }}</p>
+        <p>Total rate count: {{ item?.rating?.count }}</p>
+        <p>category: {{ item.category }}</p>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="main">
+  <div *ngIf="!loading">
+    <h1>{{ onInitData }}</h1>
+  </div>
+  <div *ngIf="loading">
+    <h1>Loading.....</h1>
+  </div>
+  <div class="mb-5">
+    <label class="form-label" for="addItemInput">TODO</label>
+    <input
+      #newItem
+      type="text"
+      class="form-control"
+      (keyup.enter)="addTodo(newItem.value); newItem.value = ''"
+      placeholder="Enter your todo here"
+      id="addItemInput"
+    />
+    <button
+      class="btn btn-dark w-100 mt-2"
+      (click)="addTodo(newItem.value); newItem.value = ''"
+      type="button"
+    >
+      ADD
+    </button>
+    <p class="alertText" *ngIf="alert">Please Enter TODO!</p>
+  </div>
+  <div class="allLists">
+    <ul style="list-style: upper-roman; overflow: auto">
+      <li *ngFor="let item of allItems">
+        <div class="listContainer">
+          <p
+            [ngStyle]="{
+              'text-decoration': item.done ? 'line-through' : 'none'
+            }"
+            class="items m-1"
+          >
+            {{ item.description }}
+          </p>
+
+          <div>
+            <button
+              class="btn btn-primary m-1"
+              (click)="changeDone(item.description)"
+              type="button"
+            >
+              {{ item.done ? "Not Done" : "Done" }}
+            </button>
+            <button
+              class="btn btn-danger m-1"
+              (click)="deleteItem(item.description)"
+              type="button"
+            >
+              Delete
+            </button>
+            <button
+              class="btn btn-warning m-1"
+              [routerLink]="['/todos', item.description]"
+              type="button"
+            >
+              Open
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
