@@ -1,3 +1,4 @@
+import { ServicesService } from './../services.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Product } from 'src/types';
@@ -9,12 +10,10 @@ import { Product } from 'src/types';
 })
 export class ProductsComponent {
   storeData: Product[] = [];
-  constructor(private http: HttpClient) {}
+  constructor(private apiServices: ServicesService) {}
   ngOnInit() {
-    this.http
-      .get<Product[]>('https://fakestoreapi.com/products')
-      .subscribe((response) => {
-        this.storeData = response;
-      });
+    this.apiServices
+      .getProducts()
+      .subscribe((products) => (this.storeData = products));
   }
 }

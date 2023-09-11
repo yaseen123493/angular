@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { Product } from 'src/types';
+import { ServicesService } from '../services.service';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +10,10 @@ import { Product } from 'src/types';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent {
-  constructor(private router: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private router: ActivatedRoute,
+    private apiService: ServicesService
+  ) {}
   id$ = this.router.paramMap.pipe(map((params) => params.get('productId')));
   productData: Product = {
     id: 0,
@@ -26,11 +29,7 @@ export class ProductComponent {
   };
   ngOnInit() {
     this.id$
-      .pipe(
-        switchMap((id) =>
-          this.http.get<Product>('https://fakestoreapi.com/products/' + id)
-        )
-      )
+      .pipe(switchMap((id) => this.apiService.getProduct(id)))
       .forEach((product) => (this.productData = product));
   }
 }
