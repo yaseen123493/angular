@@ -8,6 +8,7 @@ import { Product } from 'src/types';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent {
   // storeData: Product[] = [];

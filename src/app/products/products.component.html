@@ -1,24 +1,28 @@
-<div class="container">
-  <div class="row" *ngIf="storeData$ | async as storeData; else loading">
-    <div class="col-4" *ngFor="let item of storeData">
-      <a
-        class="text-decoration-none text-dark"
-        [routerLink]="['/products', item?.id]"
-      >
-        <div>
-          <img
-            src="{{ item?.image }}"
-            class="h-25 w-25 border-3"
-            alt="{{ item.id }}"
-          />
-        </div>
-        <h4>{{ item?.title }}</h4>
-        <p>{{ item?.description }}</p>
-        <h6>Rs. {{ item?.price }}/-</h6>
-        <p>rating: {{ item?.rating?.rate }}</p>
-        <p>Total rate count: {{ item?.rating?.count }}</p>
-        <p>category: {{ item.category }}</p>
-      </a>
+<div
+  class="container text-center"
+  *ngIf="storeData$ | async as storeData; else loading"
+>
+  <div class="row justify-content-start">
+    <div class="col-12 col-md-3 g-3" *ngFor="let item of storeData">
+      <div class="bg-light rounded-3 shadow-lg p-3 h-100">
+        <a
+          class="text-decoration-none text-dark"
+          [routerLink]="['/products', item?.id]"
+        >
+          <div>
+            <img
+              src="{{ item?.image }}"
+              class="h-25 w-25 border-3"
+              alt="{{ item.id }}"
+            />
+          </div>
+          <h6>{{ item?.title }}</h6>
+          <p>Rs. {{ item?.price }}/-</p>
+          <p>rating: {{ item?.rating?.rate }}</p>
+          <p>Total rate count: {{ item?.rating?.count }}</p>
+          <p>category: {{ item.category }}</p>
+        </a>
+      </div>
     </div>
   </div>
 </div>

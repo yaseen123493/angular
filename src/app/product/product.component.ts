@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, map, switchMap } from 'rxjs';
 import { Product } from 'src/types';
@@ -8,6 +8,7 @@ import { ServicesService } from '../services.service';
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductComponent {
   constructor(
