@@ -14,6 +14,7 @@ import { EachTodoComponent } from './each-todo/each-todo.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { ApiServiceInterceptor } from './api-service.interceptor';
+import { AddProductComponent } from './add-product/add-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { ApiServiceInterceptor } from './api-service.interceptor';
     EachTodoComponent,
     ProductsComponent,
     ProductComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,

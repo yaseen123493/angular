@@ -10,9 +10,9 @@ import { map } from 'rxjs';
 export class EachTodoComponent {
   id = this.router.paramMap.pipe(map((params) => params.get('id'))); // better approach
   constructor(private router: ActivatedRoute) {}
-  ngOnInit() {
-    // this.router.params.subscribe((params) => {
-    //   this.id = params['id'];
-    // });
-  }
+  // ngOnInit() {
+  //   this.router.params.subscribe((params) => {
+  //     this.id = params['id'];
+  //   });
+  // }
 }

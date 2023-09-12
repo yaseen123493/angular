@@ -1,6 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map, switchMap } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  map,
+  switchMap,
+  throwError,
+  throwIfEmpty,
+} from 'rxjs';
 import { Product } from 'src/types';
 import { ServicesService } from '../services.service';
 
@@ -18,8 +25,15 @@ export class ProductComponent {
 
   id$ = this.router.paramMap.pipe(map((params) => params.get('productId')));
   productData$: Observable<Product> = this.id$.pipe(
-    switchMap((id) => this.apiService.getProduct(id))
+    switchMap((id) =>
+      this.apiService.getProduct(id).pipe(
+        catchError((err) => {
+          return throwError(err);
+        })
+      )
+    )
   );
+
   // productData: Product = {
   //   id: 0,
   //   title: '',

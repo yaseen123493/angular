@@ -6,6 +6,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { EachTodoComponent } from './each-todo/each-todo.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
+import { AddProductComponent } from './add-product/add-product.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
     path: 'products/:productId',
     component: ProductComponent,
     title: 'product',
+  },
+  {
+    path: 'add-product',
+    component: AddProductComponent,
+    title: 'Add Product',
   },
   {
     path: '**',
