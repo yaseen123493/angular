@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Product } from 'src/types';
 import { ServicesService } from '../services.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,7 @@ export class AddProductComponent {
   message: string = '';
   product: Product = {
     title: '',
-    price: 0,
+    price: '',
     description: '',
     category: '',
     image: '',
@@ -24,7 +25,7 @@ export class AddProductComponent {
 
   responseData: Product = {
     title: '',
-    price: 0,
+    price: '',
     description: '',
     category: '',
     image: '',
@@ -34,10 +35,11 @@ export class AddProductComponent {
     },
   };
 
-  addProduct() {
+  addProduct(productForm: NgForm) {
     this.apiService.addProducts(this.product).subscribe((response) => {
       this.message = 'Successfully added your product';
       this.responseData = response;
+      productForm.reset();
     });
   }
 }

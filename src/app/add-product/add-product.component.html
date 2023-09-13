@@ -1,48 +1,88 @@
 <div class="container">
   <div class="row">
+    <div>
+      pristine: {{ productForm.pristine | json }}, dirty:
+      {{ productForm.dirty | json }}, valid:{{ productForm.valid | json }},
+      INvalid:{{ productForm.invalid | json }}, value:
+      {{ productForm.value | json }},
+    </div>
     <div *ngIf="message" class="col-12 alert alert-success mt-3">
       {{ message }}
     </div>
-    <form (ngSubmit)="addProduct()">
+    <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
       <div class="col-12">
         <div class="mb-3">
-          <label for="Title" class="col-sm-2 col-form-label">Title</label>
+          <label for="Title" class="col-sm-2 col-form-label"
+            >Title<span class="text-danger">*</span></label
+          >
           <div class="col-sm-10">
             <input
+              #productTitle="ngModel"
+              required
               name="title"
+              class="form-control"
               [(ngModel)]="product.title"
               type="text"
-              class="form-control"
               id="Title"
             />
+            <span
+              class="text-danger"
+              *ngIf="productForm.dirty &&productTitle.errors?.['required']"
+              >please enter title</span
+            >
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="mb-3">
-          <label for="Price" class="col-sm-2 col-form-label">Price</label>
+          <label for="Price" class="col-sm-2 col-form-label"
+            >Price<span class="text-danger">*</span></label
+          >
           <div class="col-sm-10">
             <input
+              #productPrice="ngModel"
               name="price"
+              class="form-control"
+              required
+              max="7"
+              min="3"
               [(ngModel)]="product.price"
               type="number"
-              class="form-control"
               id="Price"
             />
+            <span
+              class="text-danger"
+              *ngIf="productForm.dirty && productPrice.errors?.['required']"
+              >please enter price</span
+            >
+            <span
+              class="text-danger"
+              *ngIf="productForm.dirty && productPrice.errors?.['max']"
+              >please enter max 7 RS</span
+            >
           </div>
         </div>
       </div>
       <div class="col-12">
         <div class="mb-3">
-          <label for="Price" class="col-sm-2 col-form-label">Description</label>
+          <label for="Description" class="col-sm-2 col-form-label"
+            >Description<span class="text-danger">*</span></label
+          >
           <div class="col-sm-10">
             <input
+              #productDescription="ngModel"
               name="description"
+              required
               [(ngModel)]="product.description"
               type="text"
               class="form-control"
-              id="Price"
+              id="Description"
             />
+            <span
+              class="text-danger"
+              *ngIf="productForm.dirty &&productDescription.errors?.['required']"
+              >please enter description</span
+            >
           </div>
         </div>
       </div>
@@ -77,20 +117,23 @@
 
       <div class="col-12">
         <div class="mb-3">
-          <button class="btn btn-primary w-100" type="submit">SUBMIT</button>
+          <button
+            [disabled]="productForm.invalid"
+            class="btn btn-primary w-100"
+            type="submit"
+          >
+            SUBMIT
+          </button>
         </div>
       </div>
     </form>
-    <div *ngIf="responseData" class="col-12 col-md-4 col-xl-3 g-3 mb-3">
+    <div *ngIf="responseData.title" class="col-12 col-md-4 col-xl-3 g-3 mb-3">
       <div class="bg-light rounded-3 shadow-lg p-3 h-100">
-        <a
-          class="text-decoration-none text-dark"
-          [routerLink]="['/products', responseData.id]"
-        >
+        <div class="text-decoration-none text-dark">
           <div>
             <img
               src="{{ responseData.image }}"
-              class="h-25 w-25 border-3"
+              class="h-50 w-50 border-3"
               alt="{{ responseData.id }}"
             />
           </div>
@@ -99,7 +142,7 @@
           <p>rating: {{ responseData.rating?.rate }}</p>
           <p>Total rate count: {{ responseData.rating?.count }}</p>
           <p>category: {{ responseData.category }}</p>
-        </a>
+        </div>
       </div>
     </div>
   </div>

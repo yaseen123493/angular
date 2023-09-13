@@ -15,6 +15,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { ApiServiceInterceptor } from './api-service.interceptor';
 import { AddProductComponent } from './add-product/add-product.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { AddProductComponent } from './add-product/add-product.component';
     ProductsComponent,
     ProductComponent,
     AddProductComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

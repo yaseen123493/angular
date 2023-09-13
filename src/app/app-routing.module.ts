@@ -7,6 +7,7 @@ import { EachTodoComponent } from './each-todo/each-todo.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
     path: 'add-product',
     component: AddProductComponent,
     title: 'Add Product',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Login',
   },
   {
     path: '**',
