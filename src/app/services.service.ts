@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, catchError, throttleTime, throwError } from 'rxjs';
 import { Product } from 'src/types';
 
@@ -7,7 +8,7 @@ import { Product } from 'src/types';
   providedIn: 'root',
 })
 export class ServicesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: Router) {}
 
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[] | []>('https://fakestoreapi.com/products');
@@ -22,5 +23,13 @@ export class ServicesService {
       'https://fakestoreapi.com/products',
       product
     );
+  }
+
+  isloggedin = false;
+  login(email: string, password: string) {
+    if (email && password) {
+      return (this.isloggedin = true);
+    }
+    return this.isloggedin;
   }
 }

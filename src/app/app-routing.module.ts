@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { LoginComponent } from './login/login.component';
+import { loginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
@@ -33,16 +34,20 @@ const routes: Routes = [
     path: 'products',
     component: ProductsComponent,
     title: 'products',
+    canActivate: [loginGuard],
   },
   {
     path: 'products/:productId',
     component: ProductComponent,
     title: 'product',
+    canActivate: [loginGuard],
   },
   {
     path: 'add-product',
     component: AddProductComponent,
     title: 'Add Product',
+    canActivate: [loginGuard],
+    canMatch: [loginGuard],
   },
   {
     path: 'login',

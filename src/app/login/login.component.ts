@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServicesService } from '../services.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,12 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private loginService: ServicesService) {}
 
   ngOnInit() {}
 
   login() {
-    if (this.user.email && this.user.password) {
+    if (this.loginService.login(this.user.email, this.user.password)) {
       // this.route.navigate(['/products']);
       this.route.navigateByUrl('/products');
     }
