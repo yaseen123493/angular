@@ -9,6 +9,7 @@ import { ProductComponent } from './product/product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { LoginComponent } from './login/login.component';
 import { loginGuard } from './guards/login.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     title: 'Login',
+  },
+  {
+    component: LogoutComponent,
+    title: 'logout',
+    path: 'logout',
   },
   {
     path: '**',

@@ -16,6 +16,8 @@ import { ProductComponent } from './product/product.component';
 import { ApiServiceInterceptor } from './api-service.interceptor';
 import { AddProductComponent } from './add-product/add-product.component';
 import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+import { LogoutComponent } from './logout/logout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { LoginComponent } from './login/login.component';
     ProductComponent,
     AddProductComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { LoginComponent } from './login/login.component';
       useClass: ApiServiceInterceptor,
       multi: true,
     },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })
