@@ -18,6 +18,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { LogoutComponent } from './logout/logout.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { LogoutComponent } from './logout/logout.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    PaginationModule,
   ],
   providers: [
     {
